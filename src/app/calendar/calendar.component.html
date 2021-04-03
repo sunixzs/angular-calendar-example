@@ -1,0 +1,25 @@
+<div class="year">
+    <h2>{{ year.getLabel() }}</h2>
+    <div class="month" *ngFor="let month of year.children">
+        <h3>{{ month.getLabel() }}</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Mo</th>
+                    <th scope="col">Di</th>
+                    <th scope="col">Mi</th>
+                    <th scope="col">Do</th>
+                    <th scope="col">Fr</th>
+                    <th scope="col">Sa</th>
+                    <th scope="col">So</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let week of month.children">
+                    <td *ngFor="let day of week.children">{{ day.getLabel() }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
