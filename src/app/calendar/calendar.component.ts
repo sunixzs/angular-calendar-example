@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarBuilder } from './CalendarBuilder';
 import { CalendarYear } from './CalendarYear';
+import { dataByKey } from "./data";
 
 @Component({
     selector: 'app-calendar',
@@ -13,7 +14,7 @@ export class CalendarComponent implements OnInit {
 
     constructor() {
         const now = new Date();
-        this.year = CalendarBuilder.buildYear(now);
+        this.year = CalendarBuilder.buildYear(now, dataByKey);
     }
 
     ngOnInit(): void {

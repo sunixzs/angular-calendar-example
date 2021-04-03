@@ -17,7 +17,12 @@
             </thead>
             <tbody>
                 <tr *ngFor="let week of month.children">
-                    <td *ngFor="let day of week.children">{{ day.getLabel() }}</td>
+                    <td *ngFor="let day of week.children">
+                        {{ day.getLabel() }}
+                        <div *ngIf="day.children.length">
+                            <div *ngFor="let item of day.children">{{ item.title }}</div>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

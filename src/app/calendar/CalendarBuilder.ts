@@ -6,7 +6,7 @@ import { CalendarUtility } from "./CalendarUtility";
 
 export class CalendarBuilder {
 
-    public static buildYear(dt: Date): CalendarYear {
+    public static buildYear(dt: Date, dataByKey: any): CalendarYear {
         let year = new CalendarYear(dt);
 
         // build months
@@ -14,7 +14,7 @@ export class CalendarBuilder {
 
         let i = 0;
         while (dtIteration < year.dtEnd) {
-            let month = CalendarBuilder.buildMonth(dtIteration);
+            let month = CalendarBuilder.buildMonth(dtIteration, dataByKey);
             month.parent = year;
             year.addChild(month);
             dtIteration.setDate(dtIteration.getDate() + CalendarUtility.daysInMonth(dtIteration.getFullYear(), dtIteration.getMonth() + 1));
@@ -27,7 +27,7 @@ export class CalendarBuilder {
         return year;
     }
 
-    public static buildMonth(dt: Date): CalendarMonth {
+    public static buildMonth(dt: Date, dataByKey: any): CalendarMonth {
         let month = new CalendarMonth(dt);
 
         // build weeks
@@ -36,7 +36,7 @@ export class CalendarBuilder {
 
         let i = 0;
         while (dtIteration < dtEnd) {
-            let week = CalendarBuilder.buildWeek(dtIteration);
+            let week = CalendarBuilder.buildWeek(dtIteration, dataByKey);
             week.parent = month;
             month.addChild(week);
             dtIteration.setDate(dtIteration.getDate() + 7);
@@ -49,14 +49,14 @@ export class CalendarBuilder {
         return month;
     }
 
-    public static buildWeek(dt: Date): CalendarWeek {
+    public static buildWeek(dt: Date, dataByKey: any): CalendarWeek {
         let week = new CalendarWeek(dt);
 
         // build days
         let dtIteration = new Date(week.dtStart);
         let i = 0;
         while (dtIteration < week.dtEnd) {
-            let day = CalendarBuilder.buildDay(new Date(dtIteration));
+            let day = CalendarBuilder.buildDay(new Date(dtIteration), dataByKey);
             day.parent = week;
             week.addChild(day);
             dtIteration.setDate(dtIteration.getDate() + 1);
@@ -69,7 +69,16 @@ export class CalendarBuilder {
         return week;
     }
 
-    public static buildDay(dt: Date): CalendarDay {
-        return new CalendarDay(dt);
+    public static buildDay(dt: Date, dataByKey: any): CalendarDay {
+        let day = new CalendarDay(dt);
+
+        const key = CalendarUtility.dateKey(day.dt);
+        if (dataByKey[key]) {
+            for (let i = 0; i < dataByKey[key].length; i++) {
+                day.addChild(dataByKey[key][i]);
+            }
+        }
+
+        return day;
     }
 }
