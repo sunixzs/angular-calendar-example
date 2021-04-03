@@ -18,9 +18,14 @@ th {
     text-align: center;
     
 }
+
 td {
     text-align: left;
     font-size: 80%;
+
+    &.day--current-month {
+        background-color: lightgrey;
+    }
 }
 
 

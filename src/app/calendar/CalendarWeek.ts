@@ -1,4 +1,5 @@
 import * as BaseCalendar from "./AbstractCalendar";
+import { CalendarMonth } from "./CalendarMonth";
 import { CalendarUtility } from "./CalendarUtility";
 
 
@@ -6,6 +7,8 @@ export class CalendarWeek extends BaseCalendar.AbstractCalendar {
     constructor(dt: Date) {
         super(dt);
     }
+
+    parent: CalendarMonth = null;
 
     /**
      * abstract methods

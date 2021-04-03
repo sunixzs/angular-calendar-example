@@ -1,10 +1,13 @@
 import * as BaseCalendar from "./AbstractCalendar";
+import { CalendarWeek } from "./CalendarWeek";
 
 
 export class CalendarDay extends BaseCalendar.AbstractCalendar {
     constructor(dt: Date) {
         super(dt);
     }
+
+    parent: CalendarWeek = null;
 
     /**
      * abstract methods
@@ -40,5 +43,13 @@ export class CalendarDay extends BaseCalendar.AbstractCalendar {
 
     getLabel(): string {
         return this.dtStart.getDate().toString();
+    }
+
+    public isCurrentMonth(): boolean {
+        if (this.parent && this.parent.parent) {
+            return this.dtStart.getMonth() === this.parent.parent.dtStart.getMonth();
+        }
+
+        return false;
     }
 }

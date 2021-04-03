@@ -6,6 +6,8 @@ export class CalendarYear extends BaseCalendar.AbstractCalendar {
         super(dt);
     }
 
+    parent: BaseCalendar.CalendarObject = null;
+
     /**
      * abstract methods
      */

@@ -1,10 +1,13 @@
 import * as BaseCalendar from "./AbstractCalendar";
+import { CalendarYear } from "./CalendarYear";
 
 
 export class CalendarMonth extends BaseCalendar.AbstractCalendar {
     constructor(dt: Date) {
         super(dt);
     }
+
+    parent: CalendarYear = null;
 
     /**
      * abstract methods

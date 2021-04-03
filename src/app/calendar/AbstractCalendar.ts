@@ -41,7 +41,7 @@ export abstract class AbstractCalendar {
      */
     public children: CalendarObject[] = [];
 
-    public parent: CalendarObject = null;
+    abstract parent: CalendarObject;
 
     constructor(dt: Date) {
         this.setType();
@@ -56,7 +56,7 @@ export abstract class AbstractCalendar {
     abstract setType(): this
     abstract determineDtStart(): Date
     abstract determineDtEnd(): Date
-    abstract getLabel():string
+    abstract getLabel(): string
 
     public setChildren(children: []): this {
         this.children = children;

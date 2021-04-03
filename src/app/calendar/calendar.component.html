@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let week of month.children">
-                    <td *ngFor="let day of week.children">
+                    <td *ngFor="let day of week.children" [ngClass]="{'day--current-month': day.isCurrentMonth()}">
                         {{ day.getLabel() }}
                         <div *ngIf="day.children.length">
                             <div class="item" *ngFor="let item of day.children">
@@ -60,7 +60,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let week of calendarMonth.children">
-                <td *ngFor="let day of week.children">
+                <td *ngFor="let day of week.children" [ngClass]="{'day--current-month': day.isCurrentMonth()}">
                     {{ day.getLabel() }}
                     <div *ngIf="day.children.length">
                         <div class="item" *ngFor="let item of day.children">
