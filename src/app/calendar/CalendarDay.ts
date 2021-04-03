@@ -15,7 +15,7 @@ export class CalendarDay extends BaseCalendar.AbstractCalendar {
     }
 
     /**
-     * get monday of this week
+     * first second of day
      */
     determineDtStart(): Date {
         this.dtStart = new Date(this.dt);
@@ -27,7 +27,7 @@ export class CalendarDay extends BaseCalendar.AbstractCalendar {
     }
 
     /**
-     * last second in year
+     * last second of day
      */
     determineDtEnd(): Date {
         this.dtEnd = new Date(this.dt);

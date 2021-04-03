@@ -10,7 +10,7 @@ export class CalendarYear extends BaseCalendar.AbstractCalendar {
      * abstract methods
      */
     setType(): this {
-        this.type = BaseCalendar.TYPE_MONTH;
+        this.type = BaseCalendar.TYPE_YEAR;
         return this;
     }
 

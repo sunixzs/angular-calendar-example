@@ -10,7 +10,7 @@ export class CalendarMonth extends BaseCalendar.AbstractCalendar {
      * abstract methods
      */
     setType(): this {
-        this.type = BaseCalendar.TYPE_YEAR;
+        this.type = BaseCalendar.TYPE_MONTH;
         return this;
     }
 
@@ -27,7 +27,7 @@ export class CalendarMonth extends BaseCalendar.AbstractCalendar {
     }
 
     /**
-     * last second in year
+     * last second in month
      */
     determineDtEnd(): Date {
         this.dtEnd = new Date(this.dt.getFullYear(), this.dt.getMonth() + 1, 0);
