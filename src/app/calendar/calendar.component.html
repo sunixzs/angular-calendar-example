@@ -1,6 +1,11 @@
 <div class="year">
-    <h2>{{ year.getLabel() }}</h2>
-    <div class="month" *ngFor="let month of year.children">
+    <h1>Year example</h1>
+    
+    <button type="submit" (click)="previousYear()">previous year</button>
+    <button type="submit" (click)="nextYear()">next year</button>
+
+    <h2>{{ calendarYear.getLabel() }}</h2>
+    <div class="month" *ngFor="let month of calendarYear.children">
         <h3>{{ month.getLabel() }}</h3>
 
         <table>
@@ -20,11 +25,52 @@
                     <td *ngFor="let day of week.children">
                         {{ day.getLabel() }}
                         <div *ngIf="day.children.length">
-                            <div *ngFor="let item of day.children">{{ item.title }}</div>
+                            <div class="item" *ngFor="let item of day.children">
+                                <strong>{{ item.title }}</strong>
+                                <br />from: {{ item.dtStart }}
+                                <br />to: {{ item.dtEnd }}
+                            </div>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <hr />
+
+    <h1>Month example</h1>
+    
+    <button type="submit" (click)="previousMonth()">previous month</button>
+    <button type="submit" (click)="nextMonth()">next month</button>
+
+    <h2>{{ calendarMonth.getLabel() }}</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Mo</th>
+                <th scope="col">Di</th>
+                <th scope="col">Mi</th>
+                <th scope="col">Do</th>
+                <th scope="col">Fr</th>
+                <th scope="col">Sa</th>
+                <th scope="col">So</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let week of calendarMonth.children">
+                <td *ngFor="let day of week.children">
+                    {{ day.getLabel() }}
+                    <div *ngIf="day.children.length">
+                        <div class="item" *ngFor="let item of day.children">
+                            <strong>{{ item.title }}</strong>
+                            <br />from: {{ item.dtStart }}
+                            <br />to: {{ item.dtEnd }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
