@@ -42,6 +42,10 @@ export class CalendarDay extends AbstractCalendar {
         return this.dtStart.getDate().toString();
     }
 
+    getFullLabel():string {
+        return this.dtStart.toLocaleString( "default", { day: '2-digit', month: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', second: '2-digit' });
+    }
+
     public isCurrentMonth(): boolean {
         if (this.parent && this.parent.parent) {
             return this.dtStart.getMonth() === this.parent.parent.dtStart.getMonth();

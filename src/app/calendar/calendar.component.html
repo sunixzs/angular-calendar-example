@@ -71,4 +71,20 @@
             </tr>
         </tbody>
     </table>
+
+    <hr />
+
+    <h1>Day example</h1>
+
+    <button type="submit" (click)="previousDay()">previous day</button>
+    <button type="submit" (click)="nextDay()">next day</button>
+
+    <h2>{{ calendarDay.getFullLabel() }}</h2>
+
+    <div *ngIf="calendarDay.children.length">
+        <div class="item" *ngFor="let item of calendarDay.children">
+            <strong>{{ item.title }}</strong>
+            <br />{{ item.dtStartFormatted() }}–{{ item.dtEndFormatted() }}
+        </div>
+    </div>
 </div>

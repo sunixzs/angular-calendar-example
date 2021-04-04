@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CalendarBuilder } from './CalendarBuilder';
+import { CalendarDay } from './CalendarDay';
 import { CalendarMonth } from './CalendarMonth';
 import { CalendarUtility } from './CalendarUtility';
 import { CalendarYear } from './CalendarYear';
@@ -17,6 +18,8 @@ export class CalendarComponent {
 
     public monthDt: Date = null;
     public calendarMonth: CalendarMonth = null;
+    public dayDt: Date = null;
+    public calendarDay: CalendarDay = null;
 
     constructor() {
         this.yearDt = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
@@ -24,6 +27,9 @@ export class CalendarComponent {
 
         this.monthDt = new Date(this.yearDt);
         this.calendarMonth = CalendarBuilder.buildMonth(this.monthDt, dataByKey);
+
+        this.dayDt = new Date(this.yearDt);
+        this.calendarDay = CalendarBuilder.buildDay(this.monthDt, dataByKey);
     }
 
     /**
@@ -60,5 +66,22 @@ export class CalendarComponent {
     public nextMonth() {
         this.monthDt.setDate(this.monthDt.getDate() + CalendarUtility.daysInMonth(this.monthDt) + 1);
         this.calendarMonth = CalendarBuilder.buildMonth(this.monthDt, dataByKey);
+    }
+    /**
+     * Jump to the previous day.
+     * Bind by button in template.
+     */
+    public previousDay() {
+        this.dayDt.setDate(this.dayDt.getDate() - 1);
+        this.calendarDay = CalendarBuilder.buildDay(this.dayDt, dataByKey);
+    }
+
+    /**
+     * Jump to the next day.
+     * Bind by button in template.
+     */
+    public nextDay() {
+        this.dayDt.setDate(this.dayDt.getDate() + 1);
+        this.calendarDay = CalendarBuilder.buildDay(this.dayDt, dataByKey);
     }
 }
