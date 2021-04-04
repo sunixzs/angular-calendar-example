@@ -11,6 +11,7 @@ export const data: CalendarItem[] = [
     new CalendarItem("baz1", new Date('2021-06-03T08:00:00'), new Date('2021-06-03T10:00:00')),
     new CalendarItem("baz2", new Date('2021-06-02T08:00:00'), new Date('2021-06-04T10:00:00')),
     new CalendarItem("baz3", new Date('2021-06-05T08:00:00'), new Date('2021-06-05T10:00:00')),
+    new CalendarItem("baz4", new Date('2021-06-10T23:59:59'), new Date('2021-06-11T00:00:01')),
 ];
 
 export const dataByKey: any = {};
@@ -23,6 +24,9 @@ for (let i = 0; i < data.length; i++) {
     }
 
     let dtIteration = new Date(item.dtStart);
+    dtIteration.setHours(0);
+    dtIteration.setMinutes(0);
+    dtIteration.setSeconds(0);
     while (dtIteration < item.dtEnd) {
         const key = CalendarUtility.dateKey(dtIteration);
         if (dataByKey[key] === undefined) {

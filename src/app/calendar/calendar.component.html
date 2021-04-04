@@ -27,8 +27,7 @@
                         <div *ngIf="day.children.length">
                             <div class="item" *ngFor="let item of day.children">
                                 <strong>{{ item.title }}</strong>
-                                <br />from: {{ item.dtStart }}
-                                <br />to: {{ item.dtEnd }}
+                                <br />{{ item.dtStartFormatted() }}–{{ item.dtEndFormatted() }}
                             </div>
                         </div>
                     </td>
@@ -65,8 +64,7 @@
                     <div *ngIf="day.children.length">
                         <div class="item" *ngFor="let item of day.children">
                             <strong>{{ item.title }}</strong>
-                            <br />from: {{ item.dtStart }}
-                            <br />to: {{ item.dtEnd }}
+                            <br />{{ item.dtStartFormatted() }}–{{ item.dtEndFormatted() }}
                         </div>
                     </div>
                 </td>

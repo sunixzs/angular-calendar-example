@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CalendarBuilder } from './CalendarBuilder';
 import { CalendarMonth } from './CalendarMonth';
 import { CalendarUtility } from './CalendarUtility';
@@ -10,7 +10,7 @@ import { dataByKey } from "./data";
     templateUrl: './calendar.component.html',
     styleUrls: ['./calendar.component.scss']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent {
 
     public yearDt: Date = null;
     public calendarYear: CalendarYear = null;
@@ -26,26 +26,39 @@ export class CalendarComponent implements OnInit {
         this.calendarMonth = CalendarBuilder.buildMonth(this.monthDt, dataByKey);
     }
 
-    ngOnInit(): void {
-    }
-
+    /**
+     * Jump to the previous year.
+     * Bind by button in template.
+     */
     public previousYear() {
         this.yearDt.setDate(this.monthDt.getDate() - 365);
         this.calendarYear = CalendarBuilder.buildYear(this.yearDt, dataByKey);
     }
 
+    /**
+     * Jump to the next year.
+     * Bind by button in template.
+     */
     public nextYear() {
         this.yearDt.setDate(this.monthDt.getDate() + 365);
         this.calendarYear = CalendarBuilder.buildYear(this.yearDt, dataByKey);
     }
 
+    /**
+     * Jump to the previous month.
+     * Bind by button in template.
+     */
     public previousMonth() {
-        this.monthDt.setDate(this.monthDt.getDate() - CalendarUtility.daysInMonth(this.monthDt.getFullYear(), this.monthDt.getMonth()));
+        this.monthDt.setDate(this.monthDt.getDate() - CalendarUtility.daysInMonth(this.monthDt));
         this.calendarMonth = CalendarBuilder.buildMonth(this.monthDt, dataByKey);
     }
 
+    /**
+     * Jump to the next month.
+     * Bind by button in template.
+     */
     public nextMonth() {
-        this.monthDt.setDate(this.monthDt.getDate() + CalendarUtility.daysInMonth(this.monthDt.getFullYear(), this.monthDt.getMonth() + 1));
+        this.monthDt.setDate(this.monthDt.getDate() + CalendarUtility.daysInMonth(this.monthDt) + 1);
         this.calendarMonth = CalendarBuilder.buildMonth(this.monthDt, dataByKey);
     }
 }

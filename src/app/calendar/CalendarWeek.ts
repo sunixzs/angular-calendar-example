@@ -1,22 +1,19 @@
-import * as BaseCalendar from "./AbstractCalendar";
+import { AbstractCalendar } from "./AbstractCalendar";
 import { CalendarMonth } from "./CalendarMonth";
 import { CalendarUtility } from "./CalendarUtility";
 
-
-export class CalendarWeek extends BaseCalendar.AbstractCalendar {
+/**
+ * Class representing a week in calendar.
+ */
+export class CalendarWeek extends AbstractCalendar {
     constructor(dt: Date) {
         super(dt);
     }
 
-    parent: CalendarMonth = null;
-
     /**
-     * abstract methods
+     * When there is a parent it should be a month.
      */
-    setType(): this {
-        this.type = BaseCalendar.TYPE_WEEK;
-        return this;
-    }
+    parent: CalendarMonth = null;
 
     /**
      * get first second of monday of this week

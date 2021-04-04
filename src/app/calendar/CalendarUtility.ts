@@ -18,21 +18,21 @@ export class CalendarUtility {
         return tmpDt;
     }
 
-    public static daysInMonth(year: number, month: number): number {
-        return new Date(year, month, 0).getDate();
+    /**
+     * Determins the number of days in given date.
+     */
+    public static daysInMonth(dt: Date): number {
+        return new Date(dt.getFullYear(), dt.getMonth() + 1, 0).getDate();
     }
 
-    public static dateKey(dt): string {
-        var d = new Date(dt),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-
-        return [year, month, day].join('-');
+    /**
+     * Builds a key in form YYYY-MM-DD from a date object.
+     */
+    public static dateKey(dt: Date): string {
+        return [
+            dt.getFullYear(),
+            dt.getMonth() + 1 < 10 ? '0' + dt.getMonth() + 1 : dt.getMonth() + 1,
+            dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate()
+        ].join('-');
     }
 }

@@ -1,21 +1,18 @@
-import * as BaseCalendar from "./AbstractCalendar";
+import { AbstractCalendar } from "./AbstractCalendar";
 import { CalendarYear } from "./CalendarYear";
 
-
-export class CalendarMonth extends BaseCalendar.AbstractCalendar {
+/**
+ * Class representing a month in calendar.
+ */
+export class CalendarMonth extends AbstractCalendar {
     constructor(dt: Date) {
         super(dt);
     }
 
-    parent: CalendarYear = null;
-
     /**
-     * abstract methods
+     * When there is a parent it should be a year.
      */
-    setType(): this {
-        this.type = BaseCalendar.TYPE_MONTH;
-        return this;
-    }
+    parent: CalendarYear = null;
 
     /**
      * first second in month
@@ -42,6 +39,6 @@ export class CalendarMonth extends BaseCalendar.AbstractCalendar {
     }
 
     getLabel(): string {
-        return this.dtStart.toLocaleString('default', { month: 'long' }) + " " + this.dtStart.getFullYear().toString();
+        return this.dtStart.toLocaleString('default', { month: 'long', year: 'numeric' });
     }
 }

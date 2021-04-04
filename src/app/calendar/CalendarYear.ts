@@ -1,20 +1,17 @@
-import * as BaseCalendar from "./AbstractCalendar";
+import { AbstractCalendar, CalendarObject } from "./AbstractCalendar";
 
-
-export class CalendarYear extends BaseCalendar.AbstractCalendar {
+/**
+ * Class representing a year in calendar.
+ */
+export class CalendarYear extends AbstractCalendar {
     constructor(dt: Date) {
         super(dt);
     }
 
-    parent: BaseCalendar.CalendarObject = null;
-
     /**
-     * abstract methods
+     * At this time there is not parent of a year.
      */
-    setType(): this {
-        this.type = BaseCalendar.TYPE_YEAR;
-        return this;
-    }
+    parent: CalendarObject = null;
 
     /**
      * first second in year
